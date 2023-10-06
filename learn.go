@@ -15,6 +15,12 @@ func getlength(name, color string) int {
 	var c = len(color)
 	return c + n
 }
+func modifyMap(names []string, i int) []string {
+	fmt.Printf("Before: %v \n", names)
+	names = append(names[:i], names[i+1:]...)
+	fmt.Printf("After: %v \n", names)
+	return names
+}
 
 type student struct {
 	name string
@@ -82,5 +88,27 @@ func main() {
 		fmt.Printf("Iter elem : %d \n", elem)
 
 	}
+
+	//Pointers
+	day := "Thursday"
+	var holiday *string
+	holiday = &day
+	fmt.Printf("Today is : %s \n", day)
+
+	fmt.Printf("Today holiday print mem address : %s \n", holiday)
+	fmt.Printf("Today holiday : %s \n", *holiday)
+	//modify underneat
+	*holiday = "Friday"
+	fmt.Printf("Today is : %s \n", day)
+
+	fmt.Printf("Today holiday print mem address : %s \n", holiday)
+	fmt.Printf("Today holiday : %s \n", *holiday)
+
+	//slice
+	names := make([]string, 0)
+	names = append(names, "kumar", "nand", "priya", "avani", "google")
+	fmt.Printf("Outside Before: %v \n", names)
+	modifyMap(names, 3)
+	fmt.Printf("Outside After: %v \n", names)
 
 }

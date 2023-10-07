@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"github.com/tutor"
 )
 
 func daysOfWork() (x, y string, err error) {
@@ -113,5 +114,5 @@ func main() {
 	a[0] = "Nand"
 	a[1] = "kum"
 	which(a[:])
-
+	fmt.Println(tutor.Hello("This is cool calling turor package from tutor module"))
 }

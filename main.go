@@ -119,5 +119,18 @@ func main() {
 	//Learn Arrays
 	tutor.LearnArrays([]int{1, 2, 3})
 	tutor.PrintArrayUsingRange([]int{4, 6, 2, 3, 4})
+	//Learn returning multiple values and error
+	l, err := tutor.GoReturnMultipleValues([]string{"nan", "kumar", "swee"})
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(l)
+	}
+	l, err = tutor.GoReturnMultipleValues([]string{})
+	if err != nil {
+		fmt.Println(err)
+	} else {
+		fmt.Println(l)
+	}
 
 }

@@ -22,3 +22,11 @@ func PrintArrayUsingRange(arr []int) {
 		}
 	}
 }
+
+func GoReturnMultipleValues(arr []string) (l int, err error) {
+	l = len(arr)
+	if l == 0 {
+		return 0, fmt.Errorf("No elements in array")
+	}
+	return l, err
+}

@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-func which([]string) string {
-	fmt.Println("Package : utils")
+func which(util []string) string {
+	fmt.Printf("Package : %v \n", util)
 	return "utils"
 }

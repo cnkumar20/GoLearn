@@ -115,4 +115,9 @@ func main() {
 	a[1] = "kum"
 	which(a[:])
 	fmt.Println(tutor.Hello("This is cool calling turor package from tutor module"))
+
+	//Learn Arrays
+	tutor.LearnArrays([]int{1, 2, 3})
+	tutor.PrintArrayUsingRange([]int{4, 6, 2, 3, 4})
+
 }

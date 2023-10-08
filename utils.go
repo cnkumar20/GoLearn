@@ -51,3 +51,28 @@ func modifyPointerVariable(i *int) *int {
 	*i = *i + 1
 	return i
 }
+
+func modifySlice(names []string) []string {
+	tempArray := &names
+	(*tempArray)[1] = "Check"
+	return names
+}
+func modifyArray(names [3]string) [3]string {
+	tempArray := &names
+	(*tempArray)[1] = "Check"
+	fmt.Printf("Inside Modified array : %v \n", *tempArray)
+	return names
+}
+
+func funcArrayModify(names *[3]string) *[3]string {
+	names[1] = "Check"
+	fmt.Printf("Inside Modified array : %v \n", *names)
+	return names
+}
+func convertArraySliceModify(names []string) []string {
+	temp := names[:]
+	temp[1] = "Check"
+	fmt.Printf("Inside Modified array : %v \n", temp)
+	return temp
+
+}

@@ -163,4 +163,29 @@ func main() {
 	fmt.Printf("Check point After modify pointer : %d \n", pointer1)
 	fmt.Printf("Returned pointer : %d \n", *point)
 
+	//pointer and slice
+
+	pointslice := []string{"Nand", "kum", "priya", "avan"}
+	fmt.Printf("Before Modified slice : %v \n", pointslice)
+	modifySlice(pointslice)
+	fmt.Printf("After Modified slice : %v \n", pointslice)
+
+	//pointers and arrays
+	var pointArray [3]string
+	pointArray[0] = "Nand"
+	pointArray[1] = "Kum"
+	pointArray[2] = "Priya"
+	fmt.Printf("Before Modified array : %v \n", pointArray)
+	modifyArray(pointArray)
+	fmt.Printf("Modified array : %v \n", pointArray)
+
+	//Array to slice and pointer
+	//pointers and arrays
+	var pointArray1 [3]string
+	pointArray1[0] = "Nand"
+	pointArray1[1] = "Kum"
+	pointArray1[2] = "Priya"
+	fmt.Printf("Before Modified array : %v \n", pointArray1)
+	funcArrayModify(&pointArray1)
+	fmt.Printf("Modified array : %v \n", pointArray1)
 }

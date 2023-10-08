@@ -133,4 +133,15 @@ func main() {
 		fmt.Println(l)
 	}
 
+	//Variadic Function
+	workingDay("Mon", "Tue", "Wed")
+	workingDay("Mon", "Wed", "Thurs", "Fri", "sat")
+	workingDay("Mon", "Wed", "Thurs", "Fri", "Sat", "Sun", "Tue")
+	num_days, err := workingDay("Mon", "Wed", "Thurs", "Fri", "Sat", "Sun", "Tue", "Jan")
+	if err != nil {
+		fmt.Printf("%s \n", err)
+	} else {
+		fmt.Println("Number of days : %d \n", num_days)
+	}
+
 }

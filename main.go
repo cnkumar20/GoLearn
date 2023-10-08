@@ -154,4 +154,13 @@ func main() {
 	//Recursion
 	fibNum := fib(10)
 	fmt.Printf("Fib count : %d \n", fibNum)
+
+	//Pointers
+	pointer1 := 10
+
+	fmt.Printf("Check point  Before modify ponter: %d \n", pointer1)
+	point := modifyPointerVariable(&pointer1)
+	fmt.Printf("Check point After modify pointer : %d \n", pointer1)
+	fmt.Printf("Returned pointer : %d \n", *point)
+
 }

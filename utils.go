@@ -45,3 +45,9 @@ func fib(num int) int {
 	return fib(num-1) + fib(num-2)
 
 }
+
+func modifyPointerVariable(i *int) *int {
+	//increment
+	*i = *i + 1
+	return i
+}

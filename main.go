@@ -210,4 +210,10 @@ func main() {
 	student2 := student{"Kumar", 18}
 	printstructinfo(student2)
 
+	//embedded struct base insided contianer
+	co := container{base{1}, "This is a container"}
+	fmt.Printf("base num : %d \n", co.base.num)
+	fmt.Printf("container and base num : %d \n", co.num)
+	fmt.Println(co.str)
+	co.describe()
 }

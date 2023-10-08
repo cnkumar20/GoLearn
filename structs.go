@@ -53,3 +53,20 @@ func printstructinfo(s College) {
 	s.level()
 	s.course()
 }
+
+type base struct {
+	num int
+}
+
+type container struct {
+	base
+	str string
+}
+
+func (b *base) describe() {
+	fmt.Printf("Describing the base : %d \n", b.num)
+}
+
+type describer interface {
+	describe()
+}

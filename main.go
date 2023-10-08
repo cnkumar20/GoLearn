@@ -23,11 +23,6 @@ func modifyMap(names []string, i int) {
 	fmt.Printf("After: %v \n", names)
 }
 
-type student struct {
-	name string
-	age  int
-}
-
 func main() {
 	var num int = 5
 	const name = "kumar"
@@ -203,5 +198,16 @@ func main() {
 		w = width
 		examineRune(runeValue)
 	}
+	//structs and advanced
+
+	student1 := student{"Nandiesh", 35}
+	fmt.Printf("student : %v \n", student1)
+	student1.print()
+	student1.addAge(3)
+	student1.print()
+
+	//structs and advance
+	student2 := student{"Kumar", 18}
+	printstructinfo(student2)
 
 }

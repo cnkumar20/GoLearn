@@ -69,10 +69,13 @@ func funcArrayModify(names *[3]string) *[3]string {
 	fmt.Printf("Inside Modified array : %v \n", *names)
 	return names
 }
-func convertArraySliceModify(names []string) []string {
-	temp := names[:]
-	temp[1] = "Check"
-	fmt.Printf("Inside Modified array : %v \n", temp)
-	return temp
 
+//string learning functions
+
+func examineRune(r rune) {
+	if r == 't' {
+		fmt.Println("found tee")
+	} else if r == 'ส' {
+		fmt.Println("found so sua")
+	}
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/tutor"
+	"unicode/utf8"
 )
 
 func daysOfWork() (x, y string, err error) {
@@ -188,4 +189,19 @@ func main() {
 	fmt.Printf("Before Modified array : %v \n", pointArray1)
 	funcArrayModify(&pointArray1)
 	fmt.Printf("Modified array : %v \n", pointArray1)
+
+	//strings and runes
+
+	const s = "สวัสดี"
+	for i, char := range s {
+		fmt.Printf("%d character : %#U \n", i, char)
+	}
+	fmt.Println("Rune count:", utf8.RuneCountInString(s))
+	for i, w := 0, 0; i < len(s); i += w {
+		runeValue, width := utf8.DecodeRuneInString(s[i:])
+		fmt.Printf("%#U starts at %d\n", runeValue, i)
+		w = width
+		examineRune(runeValue)
+	}
+
 }

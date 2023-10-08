@@ -144,4 +144,14 @@ func main() {
 		fmt.Println("Number of days : %d \n", num_days)
 	}
 
+	//Closure
+	nextNum := nextInt()
+	fmt.Printf("Next Num : %d \n", nextNum())
+	fmt.Printf("Next Num : %d \n", nextNum())
+	fmt.Printf("Next Num : %d \n", nextNum())
+	fmt.Printf("Next Num : %d \n", nextNum())
+
+	//Recursion
+	fibNum := fib(10)
+	fmt.Printf("Fib count : %d \n", fibNum)
 }

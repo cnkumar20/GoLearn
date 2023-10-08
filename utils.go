@@ -10,7 +10,7 @@ func which(util []string) string {
 	return "utils"
 }
 
-// Varoadoc function
+// Variadic function
 func workingDay(days ...string) (numDays int, err error) {
 	numDays = len(days)
 	fmt.Printf("Total number of days %d \n", len(days))
@@ -21,4 +21,27 @@ func workingDay(days ...string) (numDays int, err error) {
 		err = fmt.Errorf("Number of days can't be more than 7")
 	}
 	return numDays, err
+}
+
+// Closure Function / Anonymous Function
+func nextInt() func() int {
+	i := 0
+	return func() int {
+		i++
+		return i
+	}
+}
+
+func fib(num int) int {
+	if num == 0 {
+		return 1
+	}
+	if num == 1 {
+		return 1
+	}
+	if num == 2 {
+		return 1
+	}
+	return fib(num-1) + fib(num-2)
+
 }

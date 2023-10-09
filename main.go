@@ -216,4 +216,12 @@ func main() {
 	fmt.Printf("container and base num : %d \n", co.num)
 	fmt.Println(co.str)
 	co.describe()
+
+	//Generics and maps
+	map1 := map[int]string{1: "One", 2: "two", 3: "Three"}
+	keys1, values1 := makeMap(map1)
+	fmt.Printf("Keys : %v , Values %v \n", keys1, values1)
+	map2 := map[string]int{"One": 1, "Two": 2, "Three": 3}
+	keys2, values2 := makeMap(map2)
+	fmt.Printf("Keys : %v , Values %v \n", keys2, values2)
 }

@@ -3,6 +3,8 @@ package main
 import (
 	"fmt"
 	"github.com/tutor"
+	"sync"
+	"time"
 	"unicode/utf8"
 )
 
@@ -224,4 +226,24 @@ func main() {
 	map2 := map[string]int{"One": 1, "Two": 2, "Three": 3}
 	keys2, values2 := makeMap(map2)
 	fmt.Printf("Keys : %v , Values %v \n", keys2, values2)
+	//Nothing prints because nothing returned or capture
+	go tutor.Hello("Nandiesh")
+	var wg = sync.WaitGroup{}
+
+	for _, i := range []int{1, 2, 3} {
+		wg.Add(1)
+		i := i
+		go func() {
+			defer wg.Done()
+			worker(i)
+		}()
+	}
+	wg.Wait()
+}
+
+// GoRoutines
+func worker(id int) {
+	fmt.Printf("Worker %d starting\n", id)
+	time.Sleep(time.Second)
+	fmt.Printf("Worker %d done\n", id)
 }

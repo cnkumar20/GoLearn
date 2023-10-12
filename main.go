@@ -263,4 +263,33 @@ func main() {
 	fmt.Printf("Done\n")
 	time.Sleep(time.Millisecond * 500)
 
+	//Channels
+
+	channel1 := make(chan string)
+
+	go func() {
+		time.Sleep(time.Second * 3)
+		channel1 <- "Ping"
+	}()
+	time.Sleep(time.Second * 1)
+	fmt.Println("Waiting for goroutin to send ping in channel1 pipe")
+	fmt.Println("Send and recieve are blocking function")
+	msg1 := <-channel1
+	fmt.Printf("message from channel : %s \n", msg1)
+	fmt.Println("Waiting for goroutin to send ping in channel1 pipe recieved")
+
+	//Channel Buffering
+	//channels are more like queues , buffering helps for slow reciever or quick sender goRoutines
+	channel12 := make(chan string, 2)
+	go func() {
+		channel12 <- "ping firstt"
+		channel12 <- "ping second"
+	}()
+
+	time.Sleep(time.Second * 2)
+	fmt.Println(len(channel12))
+	fmt.Println(<-channel12)
+	fmt.Printf("After reading first message from channel , leng reduces : %d ", len(channel12))
+	time.Sleep(time.Second * 1)
+	fmt.Println(<-channel12)
 }

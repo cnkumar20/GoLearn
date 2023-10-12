@@ -25,6 +25,19 @@ func modifyMap(names []string, i int) {
 	fmt.Printf("After: %v \n", names)
 }
 
+func printGoRoutineMsg(msg string) {
+	for i := 0; i < 3; i++ {
+		fmt.Printf("This a message for goRoutine Examples : %s \n", msg)
+	}
+}
+
+// GoRoutines
+func worker(id int) {
+	fmt.Printf("Worker %d starting\n", id)
+	time.Sleep(time.Second)
+	fmt.Printf("Worker %d done\n", id)
+}
+
 func main() {
 	var num int = 5
 	const name = "kumar"
@@ -226,6 +239,8 @@ func main() {
 	map2 := map[string]int{"One": 1, "Two": 2, "Three": 3}
 	keys2, values2 := makeMap(map2)
 	fmt.Printf("Keys : %v , Values %v \n", keys2, values2)
+
+	//GoRoutines
 	//Nothing prints because nothing returned or capture
 	go tutor.Hello("Nandiesh")
 	var wg = sync.WaitGroup{}
@@ -239,11 +254,13 @@ func main() {
 		}()
 	}
 	wg.Wait()
-}
+	printGoRoutineMsg("Hello World!!")
+	go printGoRoutineMsg("Hello Worlod From Go!!!!!")
 
-// GoRoutines
-func worker(id int) {
-	fmt.Printf("Worker %d starting\n", id)
-	time.Sleep(time.Second)
-	fmt.Printf("Worker %d done\n", id)
+	go func(msg string) {
+		fmt.Printf("Anonymous GoRoutine :")
+	}("Hello Anonymous")
+	fmt.Printf("Done\n")
+	time.Sleep(time.Millisecond * 500)
+
 }

@@ -3,6 +3,7 @@ package main
 //sample package
 import (
 	"fmt"
+	"time"
 )
 
 func which(util []string) string {
@@ -90,4 +91,11 @@ func makeMap[K comparable, V any](m map[K]V) ([]K, []V) {
 		values = append(values, v)
 	}
 	return keys, values
+}
+
+func channelSyncExample(done chan bool, msg string) {
+	fmt.Printf("Inside ChannelSyncExample : %s \n", msg)
+	time.Sleep(time.Millisecond * 500)
+	fmt.Printf("Done \n")
+	done <- true
 }

@@ -292,4 +292,10 @@ func main() {
 	fmt.Printf("After reading first message from channel , leng reduces : %d ", len(channel12))
 	time.Sleep(time.Second * 1)
 	fmt.Println(<-channel12)
+
+	//Example : using channel to syncronize go ROutines
+	done := make(chan bool)
+	go channelSyncExample(done, "EXAMPLE")
+	<-done
+	fmt.Printf("will wait till block call to finish \n")
 }

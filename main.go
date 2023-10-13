@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"github.com/tutor"
+	"os"
 	"sync"
 	"time"
 	"unicode/utf8"
@@ -298,4 +299,17 @@ func main() {
 	go channelSyncExample(done, "EXAMPLE")
 	<-done
 	fmt.Printf("will wait till block call to finish \n")
+	pings := make(chan string, 1)
+	pongs := make(chan string, 1)
+	ping("Hello Developer \r", pings)
+	pong(pings, pongs)
+	fmt.Printf("pong reads from ping %s \n", <-pongs)
+	list_dir, err := os.ReadDir(os.Getenv("HOME"))
+	fmt.Printf("Check : %d \n", len(list_dir))
+	if err != nil {
+		fmt.Errorf(err.Error())
+	}
+	for _, l := range list_dir {
+		fmt.Printf("%s \t", l.Name())
+	}
 }

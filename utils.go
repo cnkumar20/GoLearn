@@ -99,3 +99,12 @@ func channelSyncExample(done chan bool, msg string) {
 	fmt.Printf("Done \n")
 	done <- true
 }
+
+func ping(msg string, pings chan<- string) {
+	pings <- msg
+}
+
+func pong(pings <-chan string, pongs chan<- string) {
+	msg := <-pings
+	pongs <- msg
+}

@@ -324,18 +324,35 @@ func main() {
 
 	go func() {
 		time.Sleep(time.Second * 2)
-		c1 <- "Hello message 2"
+		c2 <- "Hello message 2"
 	}()
+
 	for i := 0; i < 2; i++ {
 		select {
 		case msg1 := <-c1:
-			{
-				fmt.Printf("Receieved c1 : %s", msg1)
-			}
+			fmt.Printf("Receieved c1 : %s \n", msg1)
 		case msg2 := <-c2:
-			{
-				fmt.Printf("Recoeved c2 : %s", msg2)
-			}
+			fmt.Printf("Recoeved c2 : %s \n", msg2)
 		}
+	}
+
+	//timeouts
+	c1 = make(chan string)
+	c2 = make(chan string)
+	go func() {
+		time.Sleep(time.Second * 2)
+		c1 <- "Message 1"
+	}()
+
+	go func() {
+		time.Sleep(time.Second * 2)
+		c1 <- "Message 2"
+	}()
+
+	select {
+	case msg1 := <-c1:
+		fmt.Printf("go function %s", msg1)
+	case <-time.After(time.Second * 1):
+		fmt.Print("Timeout on Message 1 \n")
 	}
 }

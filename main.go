@@ -355,4 +355,26 @@ func main() {
 	case <-time.After(time.Second * 1):
 		fmt.Print("Timeout on Message 1 \n")
 	}
+
+	c1 = make(chan string)
+	c3 := make(chan string)
+
+	select {
+	case msg2 := <-c1:
+		fmt.Printf("non default : %s", msg2)
+	default:
+		fmt.Printf("Skipping under default \n")
+	}
+	go func() {
+		c3 <- "Message1"
+	}()
+	for i := 0; i < 2; i++ {
+		select {
+		case msg1 := <-c3:
+			fmt.Printf("non default : %s", msg1)
+		default:
+			fmt.Printf("Skipping under default \n")
+		}
+		time.Sleep(time.Second * 1)
+	}
 }

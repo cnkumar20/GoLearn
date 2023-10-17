@@ -377,4 +377,29 @@ func main() {
 		}
 		time.Sleep(time.Second * 1)
 	}
+
+	jobs := make(chan int, 5)
+	done = make(chan bool)
+	go func() {
+		for {
+			j, more := <-jobs
+			if more {
+				fmt.Printf("this is not done %d \n", j)
+			} else {
+				fmt.Printf("Job DONE \n")
+				done <- true
+				return
+			}
+		}
+	}()
+
+	for j := 1; j < 5; j++ {
+		jobs <- j
+		fmt.Printf("sent job %d \n", j)
+	}
+	close(jobs)
+	fmt.Printf("sent all jobs \n")
+	<-done
+	fmt.Printf("blocking done")
+
 }

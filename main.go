@@ -412,5 +412,16 @@ func main() {
 	for x := range queue {
 		fmt.Printf("From the queue : %s \n", x)
 	}
-
+	timer1 := time.NewTimer(time.Second * 2)
+	<-timer1.C
+	fmt.Printf("Timer 1 fired\n")
+	timer2 := time.NewTimer(time.Second * 2)
+	go func() {
+		<-timer2.C
+		fmt.Printf("Timer2 fired \n")
+	}()
+	stop2 := timer2.Stop()
+	if stop2 {
+		fmt.Printf("Timer2 stopped\n")
+	}
 }

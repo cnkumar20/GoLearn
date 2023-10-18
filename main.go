@@ -400,6 +400,17 @@ func main() {
 	close(jobs)
 	fmt.Printf("sent all jobs \n")
 	<-done
-	fmt.Printf("blocking done")
+	fmt.Printf("blocking done \n")
+
+	//range on channels
+
+	queue := make(chan string, 3)
+
+	queue <- "Hello"
+	queue <- "World"
+	close(queue)
+	for x := range queue {
+		fmt.Printf("From the queue : %s \n", x)
+	}
 
 }

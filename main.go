@@ -48,6 +48,13 @@ func worker1(id int, jobs <-chan int, results chan<- int) {
 		results <- j * 2
 	}
 }
+
+// waitgroup
+func worker2(id int) {
+	fmt.Printf("Worker %d starting\n", id)
+	time.Sleep(time.Second)
+	fmt.Printf("Worker %d done\n", id)
+}
 func main() {
 	var num int = 5
 	const name = "kumar"
@@ -466,4 +473,17 @@ func main() {
 	for a := 1; a <= numJobs; a++ {
 		<-results
 	}
+
+	//Waitgroup
+
+	var wg1 sync.WaitGroup
+	for i := 1; i <= 5; i++ {
+		wg1.Add(1)
+		i := i
+		go func() {
+			defer wg1.Done()
+			worker(i)
+		}()
+	}
+	wg1.Wait()
 }

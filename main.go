@@ -39,6 +39,15 @@ func worker(id int) {
 	fmt.Printf("Worker %d done\n", id)
 }
 
+// worker
+func worker1(id int, jobs <-chan int, results chan<- int) {
+	for j := range jobs {
+		fmt.Println("worker", id, "started  job", j)
+		time.Sleep(time.Second)
+		fmt.Println("worker", id, "finished job", j)
+		results <- j * 2
+	}
+}
 func main() {
 	var num int = 5
 	const name = "kumar"
@@ -423,5 +432,38 @@ func main() {
 	stop2 := timer2.Stop()
 	if stop2 {
 		fmt.Printf("Timer2 stopped\n")
+	}
+
+	//ticker
+
+	ticker := time.NewTicker(500 * time.Millisecond)
+	done1 := make(chan bool)
+	go func() {
+		for {
+			select {
+			case <-done1:
+				return
+			case t := <-ticker.C:
+				fmt.Printf("ticker function tick at %v \n", t)
+			}
+		}
+	}()
+	time.Sleep(1600 * time.Millisecond)
+	ticker.Stop()
+	done1 <- true
+	fmt.Printf("Ticker Stopped \n")
+
+	//worker
+	const numJobs = 5
+	jobs1 := make(chan int, numJobs)
+	results := make(chan int, numJobs)
+	for w := 1; w <= 3; w++ {
+		go worker1(w, jobs1, results)
+	}
+	for j := 1; j <= numJobs; j++ {
+		jobs1 <- j
+	}
+	for a := 1; a <= numJobs; a++ {
+		<-results
 	}
 }

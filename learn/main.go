@@ -120,6 +120,8 @@ func main() {
 	//Pointers
 	day := "Thursday"
 	var holiday *string
+
+	this
 	holiday = &day
 	fmt.Printf("Today is : %s \n", day)
 
